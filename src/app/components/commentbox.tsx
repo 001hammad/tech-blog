@@ -4,12 +4,14 @@ import { useState } from "react";
 
 const BlogCommentBox = () => {
   const [comment, setComment] = useState('');
-  const [comments, setComments] = useState<string[]>([]);
+  const [name, setName] = useState('');
+  const [comments, setComments] = useState<{ name: string, comment: string }[]>([]);
 
   const addComment = () => {
-    if (comment.trim() !== "") {
-      setComments([...comments, comment]);
+    if (comment.trim() !== "" && name.trim() !== "") {
+      setComments([...comments, { name, comment }]);
       setComment("");
+      setName("");
     }
   };
 
@@ -21,6 +23,16 @@ const BlogCommentBox = () => {
     <div className="bg-white p-8 max-w-2xl mx-auto rounded-lg shadow-xl mt-12">
       <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">Tell Us What You Think</h1>
       
+      <div className="mb-6">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your Name"
+          className="border border-gray-300 rounded-md w-full p-4 mb-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-300 ease-in-out"
+        />
+      </div>
+
       <textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
@@ -32,7 +44,7 @@ const BlogCommentBox = () => {
       <div className="flex justify-between items-center">
         <button
           onClick={addComment}
-          className="bg-green-500 text-white py-2 px-8 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out"
+          className="bg-green-500 text-white py-2 md:px-8 px-2 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out"
         >
           Post Comment
         </button>
@@ -51,7 +63,9 @@ const BlogCommentBox = () => {
         ) : (
           <ul className="list-inside list-disc space-y-4">
             {comments.map((cmt, index) => (
-              <li key={index} className="text-gray-700 text-lg">{cmt}</li>
+              <li key={index} className="text-gray-700 text-lg">
+                <strong className="font-semibold">{cmt.name}:</strong> {cmt.comment}
+              </li>
             ))}
           </ul>
         )}

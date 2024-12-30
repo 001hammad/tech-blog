@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Paprika } from 'next/font/google';
+
+const logoFont = Paprika({subsets:['latin'],weight:['400']})
 
 interface NavItem {
   label: string;
@@ -11,7 +14,6 @@ interface NavItem {
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const pathname = usePathname(); // To detect the current route
 
   // Dynamic Routes for the Navbar
@@ -19,42 +21,30 @@ const Navbar: React.FC = () => {
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/Contact' }, // Add more routes dynamically
+    { label: 'Contact', href: '/contact' }, // Add more routes dynamically
   ];
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(`Searching for: ${searchQuery}`);
-    // Add search logic here (e.g., navigate to a search results page)
-  };
 
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-10">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Heading */}
         <div className="text-2xl font-extrabold text-black">
-          <Link href="/">My Dynamic Blog</Link>
+          <Link href="/" className={`${logoFont.className}`}>My Dynamic Blog</Link>
         </div>
 
-        {/* Search Bar (Desktop View) */}
-        <form
-          onSubmit={handleSearch}
-          className="hidden lg:flex items-center w-1/3"
-        >
+        {/* Search Bar UI (Desktop View) */}
+        <div className="hidden lg:flex items-center w-1/3">
           <input
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search..."
             className="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button
-            type="submit"
             className="bg-green-400 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none"
           >
             Search
           </button>
-        </form>
+        </div>
 
         {/* Toggle Button for Mobile */}
         <button
@@ -85,8 +75,8 @@ const Navbar: React.FC = () => {
                 href={item.href}
                 className={`block px-4 py-2 ${
                   pathname === item.href
-                    ? 'text-blue-600 font-bold'
-                    : 'text-gray-700 hover:text-gray-900'
+                    ? 'text-blue-600 hover:underline font-bold'
+                    : 'text-gray-700 hover:text-gray-900 hover:underline'
                 }`}
               >
                 {item.label}
@@ -97,7 +87,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         <ul
-          className={`lg:hidden space-y-4 absolute top-16 right-0 bg-white shadow-md w-[190px] px-6 py-4 transition-transform duration-300 ${
+          className={`lg:hidden space-y-4 absolute top-16 right-0 bg-white shadow-md w-[140px] px-6 py-4 transition-transform duration-300 ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -115,24 +105,6 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
           ))}
-          {/* Search Bar (Mobile View) */}
-          <li>
-            <form onSubmit={handleSearch} className="flex items-center space-x-2">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search..."
-                className="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 focus:outline-none"
-              >
-                Go
-              </button>
-            </form>
-          </li>
         </ul>
       </div>
     </nav>

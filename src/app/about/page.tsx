@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Image from 'next/image';
+import BlogCommentBox from '../components/commentbox';
 
 const About: FC = () => {
   // Dynamic data
@@ -46,6 +47,7 @@ const About: FC = () => {
       <div className="mt-12 text-center">
         <p className="text-lg text-gray-600">Thanks for visiting my blog! Stay tuned for more articles and updates.</p>
       </div>
+      <BlogCommentBox/>
     </div>
   );
 };

@@ -49,6 +49,7 @@ export default function Blog() {
                 />
                 <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
                 <p className="text-gray-600">{post.description}</p>
+                <p className='hover:text-blue-600 hover:underline'>read more</p>
               </div>
             </Link>
           </div>

@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation'; // For dynamic route params
 import Image from 'next/image';
+import BlogCommentBox from '@/app/components/commentbox';
 
 interface Post {
   id: string;
@@ -179,24 +180,7 @@ const posts: Post[] = [
     image: '/s-t.jpg',
     author: 'Emily Carter',
     date: '1st January, 2025'
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-];
+  }];
 
 export default function PostDetail() {
   const { id } = useParams();
@@ -262,6 +246,7 @@ export default function PostDetail() {
             ))}
         </div>
       </div>
+      <BlogCommentBox/>
     </div>
   );
 }
