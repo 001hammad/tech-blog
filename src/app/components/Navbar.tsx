@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' }, // Add more routes dynamically
+    { label: 'Contact', href: '/Contact' }, // Add more routes dynamically
   ];
 
   const handleSearch = (e: React.FormEvent) => {
