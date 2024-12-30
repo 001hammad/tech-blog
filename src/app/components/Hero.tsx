@@ -44,8 +44,8 @@ export default function Hero() {
      <Image src={relativePic.image} alt={relativePic.alternate} width={300}height={300} className='md:w-[300px] md:h-[200px] shadow-2xl shadow-blue-500 w-[100px] h-[50px]'/>
     </div>
     <div className='flex justify-center items-center my-[60px]'>
-    <div className='md:w-[750px] md:h-[100px] bg-gradient-to-bl to-blue-900 from-gray-900 flex justify-center items-center'>
-   <h2 className={` ${myFont.className} font-extrabold text-2xl text-white`}>{heroData.label}</h2>
+    <div className='md:w-[750px] md:h-[100px] bg-gradient-to-bl to-blue-900 mx-[10px] from-gray-900 flex rounded-s-xl rounded-e-lg justify-center items-center'>
+   <h2 className={` ${myFont.className} font-extrabold text-2xl text-white mx-[40px] `}>{heroData.label}</h2>
 </div>
     </div>
     </div>
